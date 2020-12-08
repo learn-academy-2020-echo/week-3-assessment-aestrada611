@@ -8,7 +8,7 @@
 // src/App.js
 
 import React, { Component } from 'react'
-// 1)
+// 1) This line is used to send data upstream and connect with child components
 import Dice from './Dice'
 import Log from './Log'
 
@@ -21,10 +21,10 @@ import dice5 from '../assets/dice-5.png'
 import dice6 from '../assets/dice-6.png'
 
 class Board extends Component{
-  // 2)
+  // 2) This is the constructor method us for the creation of an object from the class.
   constructor(props){
     super(props)
-    // 3)
+    // 3) This is to set state to certain conditions
     this.state = {
       rollImages: [dice1, dice2, dice3, dice4, dice5, dice6],
       currentPic: dice,
@@ -33,23 +33,23 @@ class Board extends Component{
   }
 
   handleRoll = () => {
-    // 4)
+    // 4) This is destructuring
     let { rollImages, diceLog } = this.state
-    // 5)
+    // 5)This is coding for a random number between 1 and the 6
     let randomNum = Math.ceil(Math.random() * rollImages.length)
     let newRoll = rollImages[randomNum]
-    // 6)
+    // 6) This is setting state
     this.setState({ currentPic: newRoll, diceLog: [... diceLog, newRoll] })
   }
 
-  // 7)
+  // 7) Must put render in order to render all stuff enclosed onto webpage.
   render(){
     const { currentPic, diceLog } = this.state
     return(
       <div id="board-container">
-        // 8)
+        // 8) Calling the child element so that it renders
         <Dice
-          // 9)
+          // 9) using an id tag to attach method and pass into child compoenet
           roll={ this.handleRoll }
           currentPic={ currentPic }
         />
@@ -61,5 +61,5 @@ class Board extends Component{
   }
 }
 
-// 10)
+// 10) This tag is needed to link everything back together.
 export default Board
